@@ -8,7 +8,7 @@
 
 ## 💌 Demo
 
-<video src="[https://user-images.githubusercontent.com](https://github.com/tanvir-shaikh/valentine-yes-no-moving-button/blob/main/valentine-demo.mp4)" controls width="600"></video>
+<video src="https://github.com/tanvir-shaikh/valentine-yes-no-moving-button/blob/main/valentine-demo.mp4" controls width="600"></video>
 
 > **"Will you be my Valentine?"**
 
