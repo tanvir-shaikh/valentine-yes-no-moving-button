@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine? 💌</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #ff9aa2 0%,
+          #fad0c4 50%,
+          #ffd1dc 100%
+        );
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .background-hearts {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.25;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 2.5rem;
+        color: #ff4d6d;
+        animation: float 18s infinite linear;
+        user-select: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(110vh) scale(0.6) rotate(0deg);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(-20vh) scale(1.1) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .container {
+        position: relative;
+        z-index: 10;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        font-family: "Great Vibes", cursive;
+        font-size: 4rem;
+        color: #fff;
+        text-shadow: 0 4px 15px rgba(255, 105, 180, 0.7);
+        margin-bottom: 1.5rem;
+        animation: glow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow:
+            0 0 20px #ff69b4,
+            0 0 30px #ff1493;
+        }
+        to {
+          text-shadow:
+            0 0 40px #ff1493,
+            0 0 60px #ff69b4;
+        }
+      }
+
+      .question {
+        font-size: 2rem;
+        color: rgb(255, 25, 25);
+        margin: 1.5rem 0 3rem;
+        font-weight: "bold";
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        max-width: 90%;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+      }
+
+      .btn {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 1.1rem 3.2rem;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        position: relative;
+        overflow: hidden;
+      }
+
+      #yesBtn {
+        background: linear-gradient(45deg, #ff3366, #ff6b6b);
+        color: white;
+      }
+
+      #yesBtn:hover {
+        transform: translateY(-6px) scale(1.08);
+        box-shadow: 0 15px 35px rgba(255, 51, 102, 0.5);
+      }
+
+      #noBtn {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        position: relative;
+        overflow: hidden;
+        background: white;
+        color: #ff4d6d;
+        border: 3px solid #ff99ac;
+        padding: 0.5rem 2rem;
+      }
+
+      #noBtn:hover {
+        background: #fff0f5;
+      }
+
+      .congrats {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #ff9ec1, #ffdde1, #fff0f5);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+      }
+
+      .congrats.show {
+        display: flex;
+        opacity: 1;
+      }
+
+      .congrats h2 {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(5rem, 12vw, 12rem);
+        color: #fff;
+        text-shadow: 0 10px 40px rgba(255, 20, 147, 0.7);
+        margin-bottom: 1.5rem;
+        animation: bounce 2.5s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-30px);
+        }
+      }
+
+      .congrats p {
+        font-size: clamp(1.6rem, 4.5vw, 3rem);
+        color: white;
+        margin-top: 1rem;
+        text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      .small-heart {
+        font-size: 2.8rem;
+        margin: 0 12px;
+        animation: heartbeat 1.4s infinite;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.35);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-hearts" id="heartsContainer"></div>
+
+    <div class="container">
+      <h1>Heyy Beautiful 💕</h1>
+
+      <img
+        id="gif-1"
+        style="margin: auto;"
+        src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3OHNzenQ5OXNibndubm4xMTRlOGt0MW9iejk2cnB5ODl2N2IzancxaiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/orU4txbRZIp6vJheJ9/giphy.gif"
+        alt=""
+      />
+
+      <img
+        id="gif-2"
+        style="margin: auto;display: none;"
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTQzNmNzY2hidTh1bG1tN3ZuNnU4emFoOWRscHFteDdyb2I2cTF0MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/5dUllWbKVlaqmMTvHb/giphy.gif"
+        alt=""
+      />
+
+      <img
+        id="gif-3"
+        style="margin: auto;display: none;"
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTQzNmNzY2hidTh1bG1tN3ZuNnU4emFoOWRscHFteDdyb2I2cTF0MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/enrq327a3sMIJAS5jA/giphy.gif"
+        alt=""
+      />
+
+      <img
+        id="gif-4"
+        style="margin: auto;display: none;"
+        src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3OHNzenQ5OXNibndubm4xMTRlOGt0MW9iejk2cnB5ODl2N2IzancxaiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/20NDgRLTSWRuwOQmUo/giphy.gif"
+        alt=""
+      />
+
+      <div class="question">Will you be my Valentine?</div>
+
+      <div class="buttons">
+        <button class="btn" id="yesBtn">Yes!! 🥰</button>
+        <button class="btn" id="noBtn">No 😒</button>
+      </div>
+    </div>
+
+    <div class="congrats" id="congratsScreen">
+      <h2 style="font-size: 3rem;margin: 0;">Congratulations!!! 💖💖💖</h2>
+
+      <img
+        id="yes-8"
+        style="margin: 0 auto;width:500px;"
+        src="https://media.baamboozle.com/uploads/images/466401/1634027357_1503633_gif-url.gif"
+        alt=""
+      />
+
+      <img
+        id="yes-9"
+        style="margin: 0 auto;width:500px;display: none;"
+        src="https://media.tenor.com/_6GBzpzSIzgAAAAM/tom-and-jerry-cat-kiss.gif"
+        alt=""
+      />
+
+      <img
+        id="yes-5"
+        style="margin: 0 auto;width:500px;display: none;"
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTQzNmNzY2hidTh1bG1tN3ZuNnU4emFoOWRscHFteDdyb2I2cTF0MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/w4au8ytRIs9KU/giphy.gif"
+        alt=""
+      />
+
+      <img
+        id="yes-6"
+        style="margin: 0 auto;width:500px;display: none;"
+        src="https://media.tenor.com/rHIQLqTky0wAAAAM/tom-and-jerry-kiss.gif"
+        alt=""
+      />
+
+      <img
+        id="yes-7"
+        style="margin: 0 auto;width:500px;display: none;"
+        src="https://media.tenor.com/VBoVrlCTNBUAAAAM/love-love-proposal.gif"
+        alt=""
+      />
+
+      <p style="font-size: 2rem;margin: 0;color: red;text-align: center;">
+        This is the best decision of your life!. <br />
+        You just made me the <span class="small-heart">❤️</span> happiest person
+        today!
+      </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+      // Floating hearts background
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = ["❤️", "💖", "💕", "💗", "💓", "💞"][
+          Math.floor(Math.random() * 6)
+        ];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 12 + 12 + "s";
+        heart.style.fontSize = Math.random() * 1.8 + 1.2 + "rem";
+        heart.style.opacity = Math.random() * 0.5 + 0.4;
+
+        document.getElementById("heartsContainer").appendChild(heart);
+
+        setTimeout(() => heart.remove(), 20000);
+      }
+
+      setInterval(createHeart, 600);
+
+      // SUPER RESPONSIVE NO BUTTON (now almost impossible to click)
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
+      let isMoving = false;
+
+      document.addEventListener("mousemove", (e) => {
+        if (isMoving) return; // prevent spam
+
+        const rect = noBtn.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        const btnCenterX = rect.left + rect.width / 2;
+        const btnCenterY = rect.top + rect.height / 2;
+
+        const dx = mouseX - btnCenterX;
+        const dy = mouseY - btnCenterY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        const threshold = 180; // bigger detection area
+
+        if (distance < threshold) {
+          isMoving = true;
+
+          // Stronger, faster escape
+          const escapeForce = (threshold - distance) * 4.2 + 140;
+          const angle = Math.atan2(dy, dx);
+
+          let newX = btnCenterX - Math.cos(angle) * escapeForce;
+          let newY = btnCenterY - Math.sin(angle) * escapeForce;
+
+          // Clamp to screen (with nice padding)
+          newX = Math.max(90, Math.min(window.innerWidth - 220, newX));
+          newY = Math.max(90, Math.min(window.innerHeight - 140, newY));
+
+          noBtn.style.position = "fixed";
+          noBtn.style.left = newX + "px";
+          noBtn.style.top = newY + "px";
+          noBtn.style.transition = "all 0.07s cubic-bezier(0.23, 1, 0.32, 1)"; // ultra snappy
+
+          // Auto reset the "moving" flag after a tiny delay
+          setTimeout(() => {
+            isMoving = false;
+          }, 80);
+        }
+      });
+
+      const gifList = [
+        document.getElementById("gif-1"),
+        document.getElementById("gif-2"),
+        document.getElementById("gif-3"),
+        document.getElementById("gif-4"),
+      ]
+
+      // No button click: disappear, change text, reappear randomly
+      noBtn.addEventListener("click", () => {
+        const rect = noBtn.getBoundingClientRect();
+        noBtn.style.opacity = "0";
+        noBtn.style.pointerEvents = "none";
+        noBtn.style.transition = "opacity 0.3s ease";
+
+        setTimeout(() => {
+          // Random position on screen
+          const randLeft =
+            Math.random() * (window.innerWidth - rect.width - 20) + 10;
+          const randTop =
+            Math.random() * (window.innerHeight - rect.height - 20) + 10;
+
+          noBtn.style.left = `${randLeft}px`;
+          noBtn.style.top = `${randTop}px`;
+
+          // Random gif
+          const randGif = gifList[Math.floor(Math.random() * gifList.length)];
+          gifList.forEach((gif) => (gif.style.display = "none"));
+          randGif.style.display = "block";
+
+          // Change text to random phrase
+          const phrases = [
+            "Really? 😏",
+            "Try again! 😂",
+            "Nope ? 🙅‍♀️",
+            "What if I asked really nicely? 🥹 ",
+            "Think twice? 🤔",
+            "No way! 😜",
+            "You sure? 😉",
+            "I am going to die 😭",
+            "Come on! Sweetie 🥺",
+            "PLEASE POOKIE",
+          ];
+          noBtn.innerHTML = phrases[Math.floor(Math.random() * phrases.length)];
+
+          noBtn.style.opacity = "1";
+          noBtn.style.pointerEvents = "auto";
+          noBtn.style.transition =
+            "all 0.08s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important"; // reset to original transition
+        }, 300); // fade out duration
+      });
+
+      const yesGifs = [
+        document.getElementById("yes-5"),
+        document.getElementById("yes-6"),
+        document.getElementById("yes-7"),
+        document.getElementById("yes-8"),
+        document.getElementById("yes-9"),
+      ]
+
+      // Yes button = pure happiness
+      yesBtn.addEventListener("click", () => {
+        document.getElementById("congratsScreen").classList.add("show");
+
+        const duration = 6200;
+        const end = Date.now() + duration;
+
+        setInterval(() => {
+          const randGif = yesGifs[Math.floor(Math.random() * yesGifs.length)];
+          yesGifs.forEach((gif) => (gif.style.display = "none"));
+          randGif.style.display = "block";          
+        }, 3300);
+
+        (function frame() {
+          confetti({
+            particleCount: 11,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0, y: Math.random() * 0.6 },
+            colors: [
+              "#ff0a54",
+              "#ff477e",
+              "#ff7096",
+              "#ff85a1",
+              "#fbb1bd",
+              "#ffccd5",
+            ],
+          });
+
+          confetti({
+            particleCount: 11,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1, y: Math.random() * 0.6 },
+            colors: ["#ff9aa2", "#ffd1dc", "#ffafcc", "#ffc8dd", "#ffe4e9"],
+          });
+
+          if (Date.now() < end) requestAnimationFrame(frame);
+        })();
+      });
+    </script>
+  </body>
+</html>
